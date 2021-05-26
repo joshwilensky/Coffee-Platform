@@ -8,7 +8,7 @@ import { Label, Error, Hint } from "@progress/kendo-react-labels";
 export const DropDownList = (fieldRenderProps) => {
   const {
     validationMessage,
-    touch,
+    touched,
     label,
     id,
     valid,
@@ -18,11 +18,12 @@ export const DropDownList = (fieldRenderProps) => {
     ...others
   } = fieldRenderProps;
   const editorRef = React.useRef(null);
+
   const showValidationMessage = touched && validationMessage;
   const showHint = !showValidationMessage && hint;
-  const hintId = showHint ? `#{id}_hint` : "";
-  const errorId = showValidationMessage ? `{id}_error` : "";
-  const labelId = label ? `{id}_label` : "";
+  const hintId = showHint ? `${id}_hint` : "";
+  const errorId = showValidationMessage ? `${id}_error` : "";
+  const labelId = label ? `${id}_label` : "";
 
   return (
     <FieldWrapper style={wrapperStyle}>
@@ -31,17 +32,16 @@ export const DropDownList = (fieldRenderProps) => {
         editorRef={editorRef}
         editorId={id}
         editorValid={valid}
-        editorDisabed={disabled}
+        editorDisabled={disabled}
       >
         {label}
       </Label>
-
       <div className={"k-form-field-wrap"}>
         <KendoDropDownList
           ariaLabelledBy={labelId}
           ariaDescribedBy={`${hintId} ${errorId}`}
           ref={editorRef}
-          vaild={vaid}
+          valid={valid}
           id={id}
           disabled={disabled}
           {...others}
@@ -56,7 +56,7 @@ export const DropDownList = (fieldRenderProps) => {
 };
 
 DropDownList.displayName = "DropDownList";
-DropdownList.PropTypes = {
+DropDownList.propTypes = {
   valid: PropTypes.bool,
   defaultValue: PropTypes.object,
   id: PropTypes.string,

@@ -1,6 +1,5 @@
 import React from "react";
 import * as PropTypes from "prop-types";
-
 import {
   Grid as KendoGrid,
   GridColumn,
@@ -16,7 +15,6 @@ import { Input } from "@progress/kendo-react-inputs";
 import { useLocalization } from "@progress/kendo-react-intl";
 
 export const Column = GridColumn;
-
 export const ColumnMenu = (props) => {
   return (
     <div>
@@ -28,10 +26,8 @@ export const ColumnMenu = (props) => {
 
 export const Grid = (props) => {
   const { data, onDataChange, ...others } = props;
-
   const excelExportRef = React.useRef(null);
   const pdfExportRef = React.useRef(null);
-
   const [isPdfExporting, setIsPdfExporting] = React.useState(false);
   const [take, setTake] = React.useState(10);
   const [skip, setSkip] = React.useState(0);
@@ -41,7 +37,6 @@ export const Grid = (props) => {
   const lastSelectedIndexRef = React.useRef(0);
   const [allColumnFilter, setAllColumnFilter] = React.useState("");
   const localizationService = useLocalization();
-
   const dataState = {
     take,
     skip,

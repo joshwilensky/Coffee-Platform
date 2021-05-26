@@ -1,10 +1,12 @@
 import React from "react";
+
 import { withRouter } from "react-router-dom";
 import {
   registerForLocalization,
   provideLocalizationService,
 } from "@progress/kendo-react-intl";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
+
 import { Header } from "./Header.jsx";
 
 const items = [
@@ -12,7 +14,6 @@ const items = [
   { name: "planning", icon: "k-i-calendar", route: "/planning" },
   { name: "profile", icon: "k-i-user", route: "/profile" },
   { separator: true },
-  { name: "info", icon: "k-i-information", route: "/info" },
 ];
 
 class DrawerRouterContainer extends React.Component {
@@ -27,7 +28,7 @@ class DrawerRouterContainer extends React.Component {
     this.resizeWindow();
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener("resize", this.resizeWindow);
   }
 
@@ -50,10 +51,9 @@ class DrawerRouterContainer extends React.Component {
       return currentPath.name;
     }
   };
-
   render() {
-    let selected = this.getSelectedItem(this.props.location.pathName);
-    const localizationService = provideLocalizationService(this.props);
+    let selected = this.getSelectedItem(this.props.location.pathname);
+    const localizationService = provideLocalizationService(this);
 
     return (
       <React.Fragment>
